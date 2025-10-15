@@ -1,0 +1,8 @@
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.DS_Store
+
+# Input files
+MOCK_STREAMING_Q4_2023.json
+RADIO_MOCK_FM.csv
