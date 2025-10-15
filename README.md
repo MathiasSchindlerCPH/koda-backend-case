@@ -1,4 +1,5 @@
 # Koda: Case til ansættelsesprocess i Backend-teamet
+<img src="https://via.ritzau.dk/data/images/00304/29b9a8c9-94a5-4cf3-9032-77dafd899e98.png" alt="Koda Logo" width="200"/>
 
 ## Introduktion
 Dette repository indeholder løsningen til Kodas backend-case i forbindelse med ansættelsessamtale som [backendudvikler](https://www.epos-asp.dk/REK/Koda/Joblist/Job.aspx?jobOfferInstanceId=178&joblistId=1&lang=da).  
