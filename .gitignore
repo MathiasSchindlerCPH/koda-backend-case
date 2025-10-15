@@ -3,6 +3,11 @@
 !.vscode/extensions.json
 .DS_Store
 
-# Input files
-MOCK_STREAMING_Q4_2023.json
-RADIO_MOCK_FM.csv
+# virtual env
+.venv/*
+
+# data files
+data/*
+
+# output files
+output/*
