@@ -49,3 +49,36 @@ python -m src.transform_json
 python -m src.convert_csv
 ```
 hvert program indlæser data som kopieret i stien `/data`.
+
+## Datamodellering
+Se vedhæftede diagram for en illustration af en mulig relationel database-model til indfangelse af den underliggende datamodel, der ligger til grund for data i `MOCK_STREAMING_Q4_2023.json` og `RADIO_MOCK_FM.csv` (klik [her](https://www.figma.com/design/WoGem8spvpNwCWoVfGSf6B/koda-case-relational-db?node-id=0-1&t=paPps8LeHHCEsTlN-1) for interaktivt link):  
+
+![Frame 1 (2)](https://github.com/user-attachments/assets/b9e3e122-baba-41d9-a194-49412acf917c)
+
+<br>
+
+`music_usage`-tabellen er central for dette databasedesign. Denne indeholder samme [granularitet](https://www.coursera.org/articles/data-granularity) som de enkelte datapunkter i `rapportering.udsendelser.udsendelse.udsendelse_indslag.indslag` fra `MOCK_STREAMING_Q4_2023.json` samt hver enkelt række i `RADIO_MOCK_FM.csv`. Således haves komplet historik over forbrug af ophavsretsligt beskyttede aktiver. 
+
+<br>
+
+`broadcast_history` indeholder historiske data for udsendelserne. `broadcast_history` indeholder tidssensitive data fra `MOCK_STREAMING_Q4_2023.json` fra felterne `rapportering.udsendelser.udsendelse`. `broadcast_history` indeholder primært data fra `MOCK_STREAMING_Q4_2023.json` fra felterne `rapportering.udsendelser.udsendelse`.
+- I tilfælde af streaming kan kolonnen `broadcast_history.channel_name` indtage værdier som `"spotify"`, `"youtube"`, etc.
+
+<br>
+
+`program_info` indeholder metadata for de enkelte udsendelser. Disse indfanger statiske data fra `MOCK_STREAMING_Q4_2023.json` fra felterne `rapportering.udsendelser.udsendelse`. Datapunker i `RADIO_MOCK_FM.csv` vil ikke have et link til `program_info`-tabellen.
+
+<br>
+
+`track_info` indeholder metadata for ophavsretsligt beskyttede aktiver. Tabellen linker til `music_usage` og viser hvilken musik blev udsendt.
+Denne tabel indfanger data fra `RADIO_MOCK_FM.csv` samt fra `rapportering.udsendelser.udsendelse.udsendelse_indslag.indsalg` fra `MOCK_STREAMING_Q4_2023.json`.
+
+<br>
+
+`copyright_holders_track_bridge` modellerer forholdet mellem musik og rettighedshavere. Der er tale om et _many-to-many_-forhold, da hvert musikstykke kan have flere rettighedshavere og hver rettighedshaver kan eje flere musikstykker. `copyright_holders_track_bridge` sikrer integritet i database-strukturen, da et givent musikstykke kan have duplikerede rækker i `copyright_holders_track_bridge`. For et givent musikstykke er der i `bridge`-tabellen kun en unik rettighedshaver registreret.
+
+<br>
+
+`copyright_holders` indeholder data om rettighedshaverne. Tabellen linker til `track_info` tabellen, og viser hvilken ejer har rettighederne til givne ophavsretsligt beskyttede værker.
+
+
