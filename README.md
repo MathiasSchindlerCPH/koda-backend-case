@@ -45,8 +45,8 @@ Programmerne skal være installeret lokalt på maskinen og være tilgængelige i
 ## Kør projektet
 Efter opsætning (jf. afsnittet [Opsætning](#opsætning)), kan projektet eksekveres direkte fra terminalen:
 ```bash
-python -m src.transform_json
-python -m src.convert_csv
+python src/transform_json.py
+python src/convert_csv.py
 ```
 hvert program indlæser data som kopieret i stien `/data`.
 
