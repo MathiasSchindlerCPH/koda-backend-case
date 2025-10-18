@@ -8,6 +8,28 @@ Projektet tager udgangspunkt i to tilsendte datafiler:
 - `RADIO_MOCK_FM.csv`
 Disse filer er *ikke* inkluderet i dette repository på GitHub og er udeladt via `.gitignore`. Udviklere forventes selv at tilføje filerne manuelt i stien `/data` (se afsnittet [Opsætning](#opsætning)).
 
+## Indholdsfortegnelsen
+- [Koda: Case til ansættelsesprocess i Backend-teamet](#koda-case-til-ansættelsesprocess-i-backend-teamet)
+  - [Introduktion](#introduktion)
+  - [Indholdsfortegnelsen](#indholdsfortegnelsen)
+  - [Tekniske krav](#tekniske-krav)
+  - [Opsætning](#opsætning)
+  - [Kør projektet](#kør-projektet)
+  - [Test](#test)
+  - [Datamodellering](#datamodellering)
+    - [Overblik](#overblik)
+    - [Kernetable](#kernetable)
+      - [`music_usage`](#music_usage)
+    - [Udsendelser](#udsendelser)
+      - [`broadcast_history`](#broadcast_history)
+      - [`program_info`](#program_info)
+    - [Værker](#værker)
+      - [`track_info`](#track_info)
+    - [Rettighedshavere](#rettighedshavere)
+      - [`copyright_holders_track_bridge`](#copyright_holders_track_bridge)
+      - [`copyright_holders`](#copyright_holders)
+  - [Refleksioner](#refleksioner)
+
 ## Tekniske krav
 Projektet kræver forudgående installation af følgende:
 - [`python`](https://www.python.org/downloads/)
