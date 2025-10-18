@@ -105,3 +105,20 @@ Tabellen linker både til `track_info` og `copyright_holders` via fremmednøgler
 #### `copyright_holders`
 Indeholder oplysninger om de individuelle rettighedshavere (fx komponister, producere, forlag m.m.).
 Tabellen linker til `track_info` gennem `copyright_holders_track_bridge` og gør det muligt at se, hvilke ejere der har rettighederne til et givent værk.
+
+---
+
+## Refleksioner
+I løsningen er der taget højde for udvalgte edge cases i datakonverteringsprocesserne frem for at forsøge fuldstændig dækning af alle potentielle scenarier. Tilgangen afspejler en bevidst arkitektur- og ingeniørmæssig prioritering: Ansvar for datakvalitet bør i højere grad ligge i kildesystemet end i downstream-transformationer (den såkaldte [*“garbage in, garbage out"*](https://en.wikipedia.org/wiki/Garbage_in,_garbage_out)-konvention):
+- At forsøge at håndtere alle mulige edge cases direkte i kodebasen kan føre til komplekse og svært vedligeholdbare løsninger, hvor logikken bliver uigennemsigtig og uforudsigelig.
+- Når transformationslaget begynder at “reparere” data, der burde være valideret tidligere i kæden, udvandes ansvarsfordelingen mellem systemerne. Resultatet kan være, at fejl håndteres inkonsistent, og at systemet som helhed bliver mere skrøbeligt og vanskeligt at fejlsøge.
+
+<br>
+
+Projektet er opbygget med fokus om at skabe en gennemsigtig og deterministisk behandling af input og er med vilje afstået fra at inkludere skjulte korrektioner, der kan vanskeliggøre fremtidig fejlfinding og vedligehold. Målet har været at skabe en kodebase, der er letforståelig, testbar og vedligeholdesvenlig (for eksempel i et produktionsmiljø med mange datakilder).
+
+Projektet er bevidst gjort modulært og udvidbart:
+- [`CsvConverter`](src/csv_converter.py)-klassen er designet som et generisk, parametrisérbart værktøj, der kan genbruges til flere typer datakonverteringer med minimal ændring af kode.
+- [`JsonConverter`](src/json_converter.py)-klassen derimod kræver en mere domænespecifik tilgang, da datamodellen i JSON-filen er hierarkisk og varierer i struktur. Her er fleksibilitet derfor forsøgt opnået gennem tydelig metodeopdeling og logisk sekventering snarere end en fuldt adapterbar, generisk pipeline.
+
+I projektet er softwaredesignet prioriteret frem for datamæssig komplethed. Der er bevidst lagt energi i at skabe et solidt og skalerbart fundament med klare konventioner, dokumentation, og testopsætning, frem for at optimere hver detalje i databehandlingen. Dette afspejler en ingeniørmæssig prioritering: At levere noget der virker, kan forstås, og kan udbygges i modsætning til en *"one-off"* ad hoc løsning.
