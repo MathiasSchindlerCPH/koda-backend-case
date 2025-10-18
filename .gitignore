@@ -1,13 +1,19 @@
-# Editor directories and files
+# Editor og systemfiler
 .vscode/*
 !.vscode/extensions.json
 .DS_Store
 
-# virtual env
-.venv/*
+# Python environment og cache
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
 
-# data files
-data/*
+# Data og output
+data/
+output/
 
-# output files
-output/*
+# Tests og logs
+*.log
+pytest_cache/
