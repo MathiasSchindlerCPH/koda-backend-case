@@ -34,7 +34,12 @@ Programmerne skal være installeret lokalt på maskinen og være tilgængelige i
     pip install -r requirements.txt
     ```
 
-1. Tilføj datafiler i stien `/data`:
+4. Opret mapper til data og output (fra projektets rodmappe):
+    ```bash
+    mkdir data output
+    ```
+
+5. Tilføj datafiler i stien `/data`:
     ```bash
     .
     ├── data
@@ -48,6 +53,13 @@ Efter opsætning (jf. afsnittet [Opsætning](#opsætning)), kan projektet eksekv
 python main.py
 ```
 Dette script indlæser data fra `/data` og genererer de transformerede filer i `/output.`
+
+## Test
+Tests kan køres fra projektets rodmappe:
+```bash
+pytest
+```
+Tests er primært inkluderet for at følge best practices i softwareudvikling. Cases er skrevet af LLM. Fremtidig videreudvikling bør inkludere mere velovervejede, sofistikerede tests.
 
 ## Datamodellering
 Se vedhæftede diagram for en illustration af en mulig relationel database-model der indfanger den underliggende struktur i data fra `MOCK_STREAMING_Q4_2023.json` og `RADIO_MOCK_FM.csv` (klik [her](https://www.figma.com/design/WoGem8spvpNwCWoVfGSf6B/koda-case-relational-db?node-id=0-1&t=paPps8LeHHCEsTlN-1) for interaktivt link):  
