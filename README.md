@@ -45,10 +45,9 @@ Programmerne skal være installeret lokalt på maskinen og være tilgængelige i
 ## Kør projektet
 Efter opsætning (jf. afsnittet [Opsætning](#opsætning)), kan projektet eksekveres direkte fra terminalen:
 ```bash
-python src/transform_json.py
-python src/convert_csv.py
+python main.py
 ```
-hvert program indlæser data som kopieret i stien `/data`.
+Dette script indlæser data fra `/data` og genererer de transformerede filer i `/output.`
 
 ## Datamodellering
 Se vedhæftede diagram for en illustration af en mulig relationel database-model der indfanger den underliggende struktur i data fra `MOCK_STREAMING_Q4_2023.json` og `RADIO_MOCK_FM.csv` (klik [her](https://www.figma.com/design/WoGem8spvpNwCWoVfGSf6B/koda-case-relational-db?node-id=0-1&t=paPps8LeHHCEsTlN-1) for interaktivt link):  
