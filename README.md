@@ -88,7 +88,7 @@ Tests er primært inkluderet for at følge best practices i softwareudvikling. C
 ## Datamodellering
 Se vedhæftede diagram for en illustration af en mulig relationel database-model der indfanger den underliggende struktur i data fra `MOCK_STREAMING_Q4_2023.json` og `RADIO_MOCK_FM.csv` (klik [her](https://www.figma.com/design/WoGem8spvpNwCWoVfGSf6B/koda-case-relational-db?node-id=0-1&t=paPps8LeHHCEsTlN-1) for interaktivt link):  
 
-![Frame 1 (2)](https://github.com/user-attachments/assets/b9e3e122-baba-41d9-a194-49412acf917c)
+![Relational Database](./diagram-relational-database.svg)
 
 <br>
 
