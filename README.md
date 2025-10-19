@@ -6,7 +6,8 @@ Dette repository indeholder løsningen til Kodas backend-case i forbindelse med 
 Projektet tager udgangspunkt i to tilsendte datafiler:
 - `MOCK_STREAMING_Q4_2023.json`
 - `RADIO_MOCK_FM.csv`
-Disse filer er *ikke* inkluderet i dette repository på GitHub og er udeladt via `.gitignore`. Udviklere forventes selv at tilføje filerne manuelt i stien `/data` (se afsnittet [Opsætning](#opsætning)).
+
+OBS: Disse filer er *ikke* inkluderet i dette repository på GitHub og er udeladt via `.gitignore`. Udviklere forventes selv at tilføje filerne manuelt i stien `/data` (se afsnittet [Opsætning](#opsætning)).
 
 ## Indholdsfortegnelsen
 - [Koda: Case til ansættelsesprocess i Backend-teamet](#koda-case-til-ansættelsesprocess-i-backend-teamet)
@@ -29,6 +30,7 @@ Disse filer er *ikke* inkluderet i dette repository på GitHub og er udeladt via
       - [`copyright_holders_track_bridge`](#copyright_holders_track_bridge)
       - [`copyright_holders`](#copyright_holders)
   - [Refleksioner](#refleksioner)
+  - [Kontakt](#kontakt)
 
 ## Tekniske krav
 Projektet kræver forudgående installation af følgende:
@@ -42,7 +44,7 @@ Programmerne skal være installeret lokalt på maskinen og være tilgængelige i
 1. Klon repository
     ```bash
     git clone https://github.com/your-username/koda_case.git
-    cd koda_case
+    cd koda-backend-case
     ```
 
 2. Opret og aktiver virtuelt miljø
@@ -58,7 +60,7 @@ Programmerne skal være installeret lokalt på maskinen og være tilgængelige i
 
 4. Opret mapper til data og output (fra projektets rodmappe):
     ```bash
-    mkdir data output
+    mkdir data output               # Windows: mkdir data, output
     ```
 
 5. Tilføj datafiler i stien `/data`:
@@ -96,7 +98,7 @@ Tabellen udgør forbindelsen mellem udsendelser (i `broadcast_history` og `progr
 
 ### Kernetable
 #### `music_usage`
-Denne tabel er central for designet og indeholder én række pr. enkelt registreret brug af et musikværk. Den afspejler strukturen `rapportering.udsendelser.udsendelse.udsendelse_indslag.indslag` i `MOCK_STREAMING_Q4_2023.json` samt hver række i R`RADIO_MOCK_FM.csv`.  
+Denne tabel er central for designet og indeholder én række pr. enkelt registreret brug af et musikværk. Den afspejler strukturen `rapportering.udsendelser.udsendelse.udsendelse_indslag.indslag` i `MOCK_STREAMING_Q4_2023.json` samt hver række i `RADIO_MOCK_FM.csv`.  
 Tabellen gør det muligt at føre komplet historik over anvendelse af ophavsretsligt beskyttede værker på tværs af både radio-broadcast og streaming.
 
 
@@ -131,7 +133,7 @@ Tabellen linker til `track_info` gennem `copyright_holders_track_bridge` og gør
 ---
 
 ## Refleksioner
-I løsningen er der taget højde for udvalgte edge cases i datakonverteringsprocesserne frem for at forsøge fuldstændig dækning af alle potentielle scenarier. Tilgangen afspejler en bevidst arkitektur- og ingeniørmæssig prioritering: Ansvar for datakvalitet bør i højere grad ligge i kildesystemet end i downstream-transformationer (den såkaldte [*“garbage in, garbage out"*](https://en.wikipedia.org/wiki/Garbage_in,_garbage_out)-konvention):
+I løsningen er der taget højde for udvalgte edge cases i datakonverteringsprocesserne frem for en stræben efter en fuldstændig dækning af alle potentielle scenarier. Tilgangen afspejler en bevidst arkitektur- og ingeniørmæssig prioritering: Ansvar for datakvalitet bør i højere grad ligge i kildesystemet end i downstream-transformationer (den såkaldte [*“garbage in, garbage out"*](https://en.wikipedia.org/wiki/Garbage_in,_garbage_out)-konvention):
 - At forsøge at håndtere alle mulige edge cases direkte i kodebasen kan føre til komplekse og svært vedligeholdbare løsninger, hvor logikken bliver uigennemsigtig og uforudsigelig.
 - Når transformationslaget begynder at “reparere” data, der burde være valideret tidligere i kæden, udvandes ansvarsfordelingen mellem systemerne. Resultatet kan være, at fejl håndteres inkonsistent, og at systemet som helhed bliver mere skrøbeligt og vanskeligt at fejlsøge.
 
@@ -144,3 +146,6 @@ Projektet er bevidst gjort modulært og udvidbart:
 - [`JsonConverter`](src/json_converter.py)-klassen derimod kræver en mere domænespecifik tilgang, da datamodellen i JSON-filen er hierarkisk og varierer i struktur. Her er fleksibilitet derfor forsøgt opnået gennem tydelig metodeopdeling og logisk sekventering snarere end en fuldt adapterbar, generisk pipeline.
 
 I projektet er softwaredesignet prioriteret frem for datamæssig komplethed. Der er bevidst lagt energi i at skabe et solidt og skalerbart fundament med klare konventioner, dokumentation, og testopsætning, frem for at optimere hver detalje i databehandlingen. Dette afspejler en ingeniørmæssig prioritering: At levere noget der virker, kan forstås, og kan udbygges i modsætning til en *"one-off"* ad hoc løsning.
+
+## Kontakt
+Tekniske udfordringer, opklarende spørgsmål eller kommentarer i forbindelse med projektet er velkomne. Udvikleren kan kontaktes på [`mathingvid@gmail.com`](mailto:mathingvid@gmail.com).
